@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar modelo con IA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .dark-mode {
+            background-color: #1F2937;
+            color: #D1D5DB;
+        }
+        .full-height {
+            height: 100vh;
+        }
+        .column {
+            width: 33.33%;
+        }
+        .image-placeholder {
+            width: 80px;
+            height: 80px;
+            background-color: #374151;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            margin-right: 8px;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem;
+            background-color: #374151;
+            border-radius: 8px;
+            color: #D1D5DB;
+            margin-top: 0.5rem;
+        }
+        .tag i {
+            margin-right: 0.5rem;
+        }
+        .floating-buttons {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .floating-buttons button {
+            margin-bottom: 0.5rem;
+            background-color: #4B5563; /* Cambiado a gris oscuro */
+            color: #D1D5DB;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .floating-buttons button i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body class="dark-mode flex min-h-screen">
+    <!-- Primera Columna -->
+    <div class="column p-4 rounded-lg shadow-lg bg-gray-800 full-height flex flex-col justify-between border-r border-gray-700">
+        <div>
+            <div class="flex justify-between items-center mb-4 border-b border-gray-700">
+                <button class="text-xl text-green-400 mb-4" onclick="window.location.href='profile.html'">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="text-lg text-green-400 flex items-center mb-4 ">
+                    <i class="fas fa-cube mr-2"></i>
+                    Generar modelo con IA
+                </h1>
+                <div class="w-6 "></div>
+            </div>
+            <div class="mb-4">
+                <div class="flex justify-between items-center">
+                    <label for="prompt" class="block text-sm text-gray-400">Prompt</label>
+                    <div class="flex space-x-2">
+                        <a href="#" class="text-sm text-blue-400 flex items-center">
+                            <i class="fas fa-book"></i>
+                            <span class="ml-1">Prueba un Ejemplo</span>
+                        </a>
+                        <a href="#" class="text-sm text-blue-400 flex items-center">
+                            <i class="fas fa-question-circle"></i>
+                            <span class="ml-1">Guía</span>
+                        </a>
+                    </div>
+                </div>
+                <textarea id="prompt" rows="6" class="w-full p-2 mt-2 bg-gray-900 text-gray-300 rounded border border-gray-700" placeholder="Escribe tu prompt aquí...">silla</textarea>
+                <div class="text-sm text-right text-gray-500">5 / 500</div>
+            </div>
+        </div>
+        <button class="w-full py-2 mt-2 bg-green-400 text-gray-900 rounded-full flex items-center justify-center">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Generar
+        </button>
+    </div>
+    <!-- Segunda Columna -->
+    <div class="column p-4 rounded-lg shadow-lg bg-gray-800 full-height border-r border-gray-700">
+        <h2 class="text-lg text-green-400 mb-4">Borradores</h2>
+        <div class="flex mb-4 items-center">
+            <button class="p-2 bg-gray-900 text-gray-300 rounded-l border-t border-l border-b border-gray-700">
+                <i class="fas fa-search"></i>
+            </button>
+            <input type="text" class="w-full p-2 bg-gray-900 text-gray-300 rounded-r border-t border-r border-b border-gray-700" placeholder="Buscar en mis archivos generados">
+            <select class="ml-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700">
+                <option>Fecha</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <h3 class="text-md text-green-400">silla</h3>
+            <div class="flex space-x-2 mt-2" style="font-size: 12px;">
+                <div class="tag">
+                    <i class="fas fa-redo-alt"></i> Regenerar
+                </div>
+                <div class="tag">
+                    <i class="fas fa-copy"></i><i class="fa-solid fa-angle-down"></i>
+                </div>
+                <div class="tag" >
+                    <i class="fas fa-trash-alt" ></i>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4 mb-4 rounded border border-gray-700 p-4">
+            <div>
+                <div class="image-placeholder" id="chair-img">
+                    <img src="/images/chair.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center ">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+            <div>
+                <div class="image-placeholder">
+                    <img src="/images/chair2.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center ">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+            <div>
+                <div class="image-placeholder" id="office-chair-img">
+                    <img src="/images/office_chair.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center ">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+            <div>
+                <div class="image-placeholder">
+                    <img src="/images/gaming_chair.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+        </div>
+        <div id="mesaContainer" style="display: none;">
+        <div class="mb-4">
+            <h3 class="text-md text-green-400">mesa</h3>
+            <div class="flex space-x-2 mt-2" style="font-size: 12px;">
+                <div class="tag">
+                    <i class="fas fa-redo-alt"></i> Regenerar
+                </div>
+                <div class="tag">
+                    <i class="fas fa-copy"></i><i class="fa-solid fa-angle-down"></i>
+                </div>
+                <div class="tag" >
+                    <i class="fas fa-trash-alt" ></i>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4 mb-4 rounded border border-gray-700 p-4">
+            <div>
+                <div class="image-placeholder" id="table-img">
+                    <img src="/images/table.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center ">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+            <div>
+                <div class="image-placeholder" id="wooden_table-img">
+                    <img src="/images/wooden_table.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center ">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+            <div>
+                <div class="image-placeholder" id="folding_table-img">
+                    <img src="/images/folding_table.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center ">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+            <div>
+                <div class="image-placeholder" id="square_picnic_table-img">
+                    <img src="/images/square_picnic_table.png" alt="Modelo 1">
+                </div>
+                <button style="font-size: 12px;" class="w-full mt-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700 flex items-center justify-center">
+                    <i class="fas fa-cog mr-2"></i> Mejorar
+                </button>
+            </div>
+        </div>
+    </div>
+        <div class="flex justify-between items-center mt-4 bottom-4 pt-4 absolute border-t border-gray-700">
+            <div class="flex items-center text-gray-400">
+                <select class="ml-2 p-2 bg-gray-900 text-gray-300 rounded border border-gray-700">
+                    <option>12</option>
+                </select>
+                <span style="margin-left: 10px; margin-right: 50px;">Elementos por página</span>
+            </div>
+            <div class="flex items-center">
+                <button class="p-2 bg-gray-900 text-gray-300 rounded border border-gray-700">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <span class="mx-2 text-gray-400">1 de 1</span>
+                <button class="p-2 bg-gray-900 text-gray-300 rounded border border-gray-700">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+<!-- Tercera Columna (Contenedor para 3D) -->
+<div class="column-3  rounded-lg shadow-lg bg-gray-800 full-height relative flex flex-col justify-center items-center" style="width: 50%;">
+    <div class="floating-buttons mb-4">
+        <button>
+            <i class="fas fa-arrows-alt"></i> Mover
+        </button>
+        <button>
+            <i class="fas fa-sync-alt"></i> Rotar
+        </button>
+        <button>
+            <i class="fas fa-search-plus"></i> Zoom
+        </button>
+        <button id="download" style="background-color: #34D399; color: #000;">
+            <i class="fa-solid fa-file-arrow-down"></i> Descargar
+        </button>
+    </div>
+    <div id="container3D" class="bg-gray-900 rounded-lg" style="height: 100vh; width: 100%;"></div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.14.3/babel.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <script>
+        // Manejo del área de texto
+        document.getElementById('prompt').addEventListener('input', function() {
+            const length = this.value.length;
+            document.querySelector('.text-sm.text-right.text-gray-500').innerText = `${length} / 500`;
+        });
+        document.querySelector('.w-full.py-2.mt-2.bg-green-400.text-gray-900.rounded-full.flex.items-center.justify-center').addEventListener('click', function() {
+        document.getElementById('mesaContainer').style.display = 'block'; // Hacer visible el contenedor de mesa
+        });
+
+        document.getElementById('download').addEventListener('click', function() {
+    
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Modelo guardado en el perfil',
+        showConfirmButton: false,
+        timer: 1500
+        });
+    });
+    </script>
+</body>
+</html>

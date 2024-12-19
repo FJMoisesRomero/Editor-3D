@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="flex h-screen">
+        <aside class="w-1/6 bg-gray-800 p-4">
+            <h1 class="text-2xl font-semibold flex items-center"><i class="fas fa-folder-open mr-2"></i>Mis Archivos</h1>
+            <ul class="mt-6">
+                <li><a href="#" class="block text-lg text-white hover:underline flex items-center"><i class="fas fa-cube mr-2"></i>Texto a 3D</a></li>
+            </ul>
+            <button onclick="window.location.href='index.html'" class="bg-green-500 text-black px-4 py-2 rounded flex items-center absolute  bottom-4"><i class="fas fa-arrow-left" style="margin-right: 10px;"></i></i>Volver al Editor</button>
+        </aside>
+        <main class="w-5/6 p-6">
+            <header class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold flex items-center"><i class="fas fa-magic mr-2"></i>Generación</h2>
+                <button class="bg-green-500 text-black px-4 py-2 rounded flex items-center"><i class="fas fa-plus mr-2"></i>Nueva Generación</button>
+            </header>
+            <div class="grid grid-cols-2">
+                <div class="bg-gray-800 p-4 rounded cursor-pointer" style="width: 300px; height: 320px;" onclick="openModal('silla')">
+                    <img src="/images/chair.png" alt="Silla" class="rounded mb-2">
+                    <p class="mt-2 text-center">Silla</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded cursor-pointer" style="width: 300px; height: 320px;" onclick="openModal('mesa')">
+                    <img src="/images/square_picnic_table.png" alt="Mesa" class="rounded mb-2">
+                    <p class="mt-2 text-center">Mesa</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-gray-900 p-8 rounded-lg relative">
+            <button class="absolute top-2 right-2 text-white" onclick="closeModal()">&times;</button>
+            <div id="modal-content" class="text-white">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="profilescript.js"></script>
+</body>
+</html>
