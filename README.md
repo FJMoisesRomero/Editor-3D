@@ -1,6 +1,6 @@
 # Editor-3D
 
-Este proyecto es un **visualizador de modelos 3D** generado con inteligencia artificial. Utiliza la biblioteca **Three.js** para renderizar modelos 3D interactivos en un navegador web.
+Este proyecto es un concepto de **visualizador de modelos 3D** generado con inteligencia artificial. Utiliza la biblioteca **Three.js** para renderizar modelos 3D interactivos en un navegador web.
 
 ## 🚀 Características
 
